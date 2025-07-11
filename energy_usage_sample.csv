@@ -1,0 +1,169 @@
+Timestamp,Appliance,Usage_kWh,Room,Mode,Temp(C),Cost(INR)
+2025-07-01 00:00:00,Fridge,1.31,Living Room,On,20,9.83
+2025-07-01 01:00:00,Washing Machine,0.19,Kitchen,On,34,1.42
+2025-07-01 02:00:00,Geyser,0.73,Bathroom,Freeze,34,5.48
+2025-07-01 03:00:00,Washing Machine,1.9,Living Room,Cool,26,14.25
+2025-07-01 04:00:00,Washing Machine,1.19,Living Room,Wash,34,8.92
+2025-07-01 05:00:00,Lights,0.36,Bathroom,Wash,24,2.7
+2025-07-01 06:00:00,Geyser,0.66,Living Room,On,24,4.95
+2025-07-01 07:00:00,Geyser,0.7,Kitchen,Cool,33,5.25
+2025-07-01 08:00:00,Geyser,1.25,Bedroom,On,21,9.38
+2025-07-01 09:00:00,Washing Machine,0.98,Kitchen,Heat,30,7.35
+2025-07-01 10:00:00,Fridge,0.87,Bedroom,On,22,6.52
+2025-07-01 11:00:00,Geyser,1.2,Bedroom,On,26,9.0
+2025-07-01 12:00:00,Washing Machine,1.44,Kitchen,Wash,25,10.8
+2025-07-01 13:00:00,Lights,1.07,Kitchen,Wash,31,8.02
+2025-07-01 14:00:00,Fridge,0.91,Kitchen,Wash,21,6.82
+2025-07-01 15:00:00,Lights,0.99,Kitchen,Heat,25,7.42
+2025-07-01 16:00:00,Fridge,1.37,Bathroom,Wash,21,10.28
+2025-07-01 17:00:00,Washing Machine,1.2,Living Room,Cool,21,9.0
+2025-07-01 18:00:00,Air Conditioner,1.58,Bedroom,Freeze,21,11.85
+2025-07-01 19:00:00,Fridge,0.63,Kitchen,Cool,33,4.72
+2025-07-01 20:00:00,Lights,0.81,Kitchen,Cool,34,6.08
+2025-07-01 21:00:00,Washing Machine,1.59,Kitchen,Wash,30,11.92
+2025-07-01 22:00:00,Fridge,0.8,Bathroom,Freeze,22,6.0
+2025-07-01 23:00:00,Air Conditioner,1.89,Kitchen,Freeze,34,14.18
+2025-07-02 00:00:00,Air Conditioner,1.9,Kitchen,Freeze,21,14.25
+2025-07-02 01:00:00,Geyser,1.9,Kitchen,Heat,23,14.25
+2025-07-02 02:00:00,Geyser,0.76,Living Room,Wash,28,5.7
+2025-07-02 03:00:00,Lights,1.24,Bathroom,Freeze,25,9.3
+2025-07-02 04:00:00,Fridge,0.95,Kitchen,Heat,20,7.12
+2025-07-02 05:00:00,Fridge,1.66,Bedroom,On,27,12.45
+2025-07-02 06:00:00,Geyser,2.05,Bedroom,On,34,15.37
+2025-07-02 07:00:00,Fridge,1.64,Bedroom,Heat,31,12.3
+2025-07-02 08:00:00,Fridge,1.2,Bathroom,Heat,33,9.0
+2025-07-02 09:00:00,Air Conditioner,1.02,Bathroom,Wash,26,7.65
+2025-07-02 10:00:00,Geyser,1.52,Bedroom,Wash,29,11.4
+2025-07-02 11:00:00,Washing Machine,0.59,Kitchen,On,22,4.42
+2025-07-02 12:00:00,Geyser,1.47,Bathroom,Freeze,20,11.02
+2025-07-02 13:00:00,Washing Machine,0.74,Bedroom,On,24,5.55
+2025-07-02 14:00:00,Air Conditioner,1.51,Bedroom,Freeze,32,11.32
+2025-07-02 15:00:00,Lights,1.12,Kitchen,Freeze,23,8.4
+2025-07-02 16:00:00,Fridge,1.01,Living Room,Wash,29,7.58
+2025-07-02 17:00:00,Air Conditioner,0.76,Bathroom,Cool,27,5.7
+2025-07-02 18:00:00,Fridge,1.02,Kitchen,Cool,20,7.65
+2025-07-02 19:00:00,Lights,1.48,Bedroom,Heat,29,11.1
+2025-07-02 20:00:00,Lights,1.72,Bedroom,Wash,20,12.9
+2025-07-02 21:00:00,Air Conditioner,1.46,Kitchen,Freeze,31,10.95
+2025-07-02 22:00:00,Lights,1.88,Bathroom,Cool,23,14.1
+2025-07-02 23:00:00,Washing Machine,2.47,Living Room,Freeze,27,18.53
+2025-07-03 00:00:00,Lights,1.04,Living Room,Cool,24,7.8
+2025-07-03 01:00:00,Fridge,1.1,Bedroom,Cool,21,8.25
+2025-07-03 02:00:00,Fridge,0.48,Bathroom,Cool,25,3.6
+2025-07-03 03:00:00,Fridge,1.8,Living Room,Wash,24,13.5
+2025-07-03 04:00:00,Fridge,1.85,Bathroom,On,21,13.88
+2025-07-03 05:00:00,Washing Machine,0.77,Bathroom,Freeze,32,5.78
+2025-07-03 06:00:00,Geyser,1.51,Bedroom,Wash,33,11.32
+2025-07-03 07:00:00,Air Conditioner,1.81,Living Room,Wash,30,13.58
+2025-07-03 08:00:00,Fridge,1.31,Kitchen,Wash,30,9.83
+2025-07-03 09:00:00,Lights,1.62,Bedroom,Wash,30,12.15
+2025-07-03 10:00:00,Fridge,1.29,Living Room,Wash,22,9.68
+2025-07-03 11:00:00,Lights,0.59,Living Room,Heat,34,4.42
+2025-07-03 12:00:00,Lights,1.72,Living Room,Freeze,28,12.9
+2025-07-03 13:00:00,Fridge,1.86,Living Room,Wash,26,13.95
+2025-07-03 14:00:00,Washing Machine,1.57,Living Room,Freeze,26,11.78
+2025-07-03 15:00:00,Lights,0.72,Bathroom,Heat,34,5.4
+2025-07-03 16:00:00,Lights,0.82,Bedroom,Heat,30,6.15
+2025-07-03 17:00:00,Fridge,0.63,Bathroom,Freeze,25,4.72
+2025-07-03 18:00:00,Lights,1.58,Kitchen,Cool,27,11.85
+2025-07-03 19:00:00,Lights,1.83,Living Room,On,23,13.73
+2025-07-03 20:00:00,Fridge,1.41,Bedroom,Cool,27,10.58
+2025-07-03 21:00:00,Fridge,1.67,Living Room,Cool,23,12.52
+2025-07-03 22:00:00,Air Conditioner,0.77,Bedroom,Cool,27,5.78
+2025-07-03 23:00:00,Washing Machine,1.27,Bathroom,Wash,28,9.52
+2025-07-04 00:00:00,Washing Machine,0.52,Bedroom,Heat,22,3.9
+2025-07-04 01:00:00,Lights,0.81,Kitchen,Cool,22,6.08
+2025-07-04 02:00:00,Washing Machine,1.64,Kitchen,Heat,30,12.3
+2025-07-04 03:00:00,Lights,1.08,Bedroom,Freeze,32,8.1
+2025-07-04 04:00:00,Air Conditioner,1.8,Bedroom,On,21,13.5
+2025-07-04 05:00:00,Fridge,1.47,Bedroom,Freeze,32,11.02
+2025-07-04 06:00:00,Fridge,2.57,Bedroom,Freeze,29,19.27
+2025-07-04 07:00:00,Fridge,1.25,Kitchen,Wash,22,9.38
+2025-07-04 08:00:00,Washing Machine,0.5,Living Room,On,22,3.75
+2025-07-04 09:00:00,Air Conditioner,1.18,Bedroom,Freeze,24,8.85
+2025-07-04 10:00:00,Washing Machine,0.72,Bedroom,Freeze,24,5.4
+2025-07-04 11:00:00,Washing Machine,1.69,Kitchen,On,21,12.68
+2025-07-04 12:00:00,Air Conditioner,1.22,Kitchen,On,31,9.15
+2025-07-04 13:00:00,Air Conditioner,1.13,Bathroom,Freeze,29,8.48
+2025-07-04 14:00:00,Air Conditioner,1.14,Bedroom,On,32,8.55
+2025-07-04 15:00:00,Air Conditioner,1.57,Bathroom,Freeze,25,11.78
+2025-07-04 16:00:00,Fridge,0.97,Kitchen,Freeze,24,7.28
+2025-07-04 17:00:00,Geyser,1.59,Kitchen,Wash,25,11.92
+2025-07-04 18:00:00,Geyser,1.72,Living Room,Cool,20,12.9
+2025-07-04 19:00:00,Air Conditioner,1.03,Bedroom,Freeze,24,7.72
+2025-07-04 20:00:00,Geyser,0.74,Bathroom,Heat,28,5.55
+2025-07-04 21:00:00,Geyser,0.94,Kitchen,Cool,31,7.05
+2025-07-04 22:00:00,Air Conditioner,1.56,Kitchen,Cool,29,11.7
+2025-07-04 23:00:00,Geyser,1.25,Bathroom,Cool,33,9.38
+2025-07-05 00:00:00,Washing Machine,1.52,Living Room,Wash,21,11.4
+2025-07-05 01:00:00,Lights,2.08,Kitchen,Freeze,20,15.6
+2025-07-05 02:00:00,Lights,1.32,Bedroom,Wash,33,9.9
+2025-07-05 03:00:00,Air Conditioner,0.8,Kitchen,Freeze,29,6.0
+2025-07-05 04:00:00,Fridge,1.73,Bedroom,Wash,32,12.98
+2025-07-05 05:00:00,Air Conditioner,1.23,Bathroom,Wash,30,9.22
+2025-07-05 06:00:00,Fridge,1.64,Bedroom,Heat,28,12.3
+2025-07-05 07:00:00,Lights,1.73,Bathroom,Wash,29,12.98
+2025-07-05 08:00:00,Air Conditioner,0.72,Bedroom,On,28,5.4
+2025-07-05 09:00:00,Washing Machine,1.89,Bathroom,Heat,34,14.18
+2025-07-05 10:00:00,Geyser,1.65,Bedroom,Wash,28,12.38
+2025-07-05 11:00:00,Fridge,0.9,Living Room,Cool,25,6.75
+2025-07-05 12:00:00,Geyser,1.35,Bedroom,On,34,10.12
+2025-07-05 13:00:00,Geyser,1.33,Bedroom,On,27,9.98
+2025-07-05 14:00:00,Air Conditioner,1.21,Living Room,On,33,9.07
+2025-07-05 15:00:00,Geyser,1.64,Kitchen,Heat,30,12.3
+2025-07-05 16:00:00,Washing Machine,1.92,Kitchen,Wash,34,14.4
+2025-07-05 17:00:00,Geyser,1.2,Bedroom,Wash,32,9.0
+2025-07-05 18:00:00,Air Conditioner,1.87,Living Room,Cool,20,14.02
+2025-07-05 19:00:00,Washing Machine,1.69,Bedroom,Cool,29,12.68
+2025-07-05 20:00:00,Lights,1.32,Bathroom,On,23,9.9
+2025-07-05 21:00:00,Geyser,1.29,Bathroom,Cool,20,9.68
+2025-07-05 22:00:00,Air Conditioner,0.62,Bedroom,Heat,27,4.65
+2025-07-05 23:00:00,Lights,0.45,Kitchen,Wash,20,3.38
+2025-07-06 00:00:00,Lights,1.28,Kitchen,On,22,9.6
+2025-07-06 01:00:00,Fridge,0.77,Bedroom,Cool,32,5.78
+2025-07-06 02:00:00,Washing Machine,1.18,Bedroom,Heat,23,8.85
+2025-07-06 03:00:00,Geyser,0.93,Bathroom,Heat,34,6.98
+2025-07-06 04:00:00,Air Conditioner,0.31,Kitchen,Cool,34,2.33
+2025-07-06 05:00:00,Fridge,1.38,Bedroom,Wash,34,10.35
+2025-07-06 06:00:00,Washing Machine,0.99,Bathroom,Cool,27,7.42
+2025-07-06 07:00:00,Fridge,1.24,Kitchen,On,25,9.3
+2025-07-06 08:00:00,Washing Machine,0.75,Living Room,Cool,33,5.62
+2025-07-06 09:00:00,Washing Machine,1.03,Bathroom,Heat,29,7.72
+2025-07-06 10:00:00,Geyser,1.98,Kitchen,Cool,31,14.85
+2025-07-06 11:00:00,Washing Machine,1.26,Kitchen,Wash,26,9.45
+2025-07-06 12:00:00,Fridge,1.47,Bathroom,Freeze,33,11.02
+2025-07-06 13:00:00,Washing Machine,0.56,Living Room,Cool,27,4.2
+2025-07-06 14:00:00,Geyser,2.39,Bathroom,Wash,21,17.92
+2025-07-06 15:00:00,Geyser,2.12,Kitchen,Wash,32,15.9
+2025-07-06 16:00:00,Fridge,1.88,Bedroom,Heat,29,14.1
+2025-07-06 17:00:00,Lights,1.61,Bedroom,Wash,33,12.08
+2025-07-06 18:00:00,Lights,1.21,Bathroom,Wash,30,9.07
+2025-07-06 19:00:00,Washing Machine,1.42,Kitchen,Wash,27,10.65
+2025-07-06 20:00:00,Air Conditioner,1.72,Bedroom,Wash,22,12.9
+2025-07-06 21:00:00,Washing Machine,0.89,Kitchen,On,26,6.68
+2025-07-06 22:00:00,Fridge,0.98,Bathroom,On,22,7.35
+2025-07-06 23:00:00,Fridge,0.37,Bedroom,Heat,34,2.78
+2025-07-07 00:00:00,Fridge,0.81,Kitchen,Cool,26,6.08
+2025-07-07 01:00:00,Fridge,2.03,Bedroom,Wash,33,15.22
+2025-07-07 02:00:00,Fridge,1.03,Bathroom,Cool,30,7.72
+2025-07-07 03:00:00,Geyser,1.04,Kitchen,Cool,34,7.8
+2025-07-07 04:00:00,Lights,1.36,Bedroom,Heat,31,10.2
+2025-07-07 05:00:00,Fridge,0.39,Bathroom,Wash,32,2.92
+2025-07-07 06:00:00,Air Conditioner,1.67,Bedroom,Wash,21,12.52
+2025-07-07 07:00:00,Air Conditioner,1.83,Bedroom,Freeze,29,13.73
+2025-07-07 08:00:00,Air Conditioner,1.39,Living Room,Cool,25,10.42
+2025-07-07 09:00:00,Air Conditioner,2.03,Living Room,Cool,22,15.22
+2025-07-07 10:00:00,Geyser,0.54,Bathroom,On,22,4.05
+2025-07-07 11:00:00,Air Conditioner,2.12,Living Room,Freeze,34,15.9
+2025-07-07 12:00:00,Fridge,0.83,Bathroom,On,28,6.22
+2025-07-07 13:00:00,Washing Machine,0.56,Living Room,On,26,4.2
+2025-07-07 14:00:00,Air Conditioner,1.08,Bedroom,On,24,8.1
+2025-07-07 15:00:00,Geyser,2.14,Bathroom,Heat,31,16.05
+2025-07-07 16:00:00,Geyser,1.19,Bathroom,Heat,29,8.92
+2025-07-07 17:00:00,Air Conditioner,0.73,Bedroom,On,26,5.48
+2025-07-07 18:00:00,Washing Machine,0.55,Bathroom,Freeze,28,4.12
+2025-07-07 19:00:00,Air Conditioner,1.15,Bathroom,Cool,20,8.62
+2025-07-07 20:00:00,Geyser,0.2,Living Room,Freeze,26,1.5
+2025-07-07 21:00:00,Lights,0.55,Bathroom,Wash,25,4.12
+2025-07-07 22:00:00,Fridge,1.97,Kitchen,Heat,29,14.78
+2025-07-07 23:00:00,Geyser,1.86,Bedroom,Cool,33,13.95
