@@ -9,13 +9,6 @@ It visualizes energy consumption by appliance, room, and time, while predicting 
 - Predict next 10–15 days energy usage with Linear Regression
 - Eco-friendly usage tips based on consumption patterns
 
-## 🚀 How to Run
-1. Install Streamlit and required libraries:
-   pip install -r requirements.txt
-2. Run the app:
-   streamlit run app.py
-3. Upload your energy usage CSV file and explore insights.
-
 ## 📦 Dataset Columns
 - Timestamp
 - Appliance
