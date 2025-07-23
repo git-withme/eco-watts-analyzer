@@ -1,47 +1,107 @@
+# app.py
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.linear_model import LinearRegression
-from datetime import timedelta
 
-st.set_page_config(page_title="EcoWatts – Smart Home Analyzer", layout="wide")
-st.title("⚡ EcoWatts – Smart Home Energy Analyzer")
+st.set_page_config(page_title="Smart Home Energy Analyzer", layout="wide")
+st.title("🏠 Smart Home Energy Usage Analyzer & Predictor")
 
-# Fixed dataset loading
+# Load data
 df = pd.read_csv("energy_usage_sample.csv", parse_dates=["Timestamp"])
+df['Hour'] = df['Timestamp'].dt.hour
 df['Date'] = df['Timestamp'].dt.date
 
-st.write("📊 Energy Usage Data Preview")
+st.subheader("📋 Sample Data")
 st.dataframe(df.head())
 
-# Dashboard View
-st.header("📈 Energy Usage Dashboard")
-daily_usage = df.groupby('Date')['Usage_kWh'].sum().reset_index()
-appliance_usage = df.groupby('Appliance')['Usage_kWh'].sum().reset_index()
+# Hourly Usage
+hourly_usage = df.groupby('Hour')['Usage_kWh'].sum()
+st.subheader("⏰ Hourly Energy Usage")
+fig, ax = plt.subplots()
+ax.plot(hourly_usage.index, hourly_usage.values, marker='o', color='green')
+ax.set_xlabel("Hour")
+ax.set_ylabel("Usage (kWh)")
+ax.set_title("Hourly Energy Usage")
+st.pyplot(fig)
 
-st.subheader("Daily Energy Usage")
-st.plotly_chart(px.line(daily_usage, x='Date', y='Usage_kWh', title='Daily Energy Usage'))
+# Appliance Pie Chart
+appliance_usage = df.groupby('Appliance')['Usage_kWh'].sum()
+st.subheader("📊 Appliance Usage Distribution")
+fig, ax = plt.subplots()
+ax.pie(appliance_usage, labels=appliance_usage.index, autopct='%1.1f%%', startangle=90)
+ax.set_title("Usage by Appliance")
+st.pyplot(fig)
 
-st.subheader("Top Consuming Appliances")
-st.plotly_chart(px.bar(appliance_usage, x='Appliance', y='Usage_kWh', title='Top Consuming Appliances'))
+# Room vs Hour Heatmap
+st.subheader("🧭 Room vs Hourly Heatmap")
+heatmap_data = df.pivot_table(values='Usage_kWh', index='Room', columns='Hour', aggfunc='sum')
+fig, ax = plt.subplots(figsize=(10, 4))
+sns.heatmap(heatmap_data, cmap="YlOrBr", ax=ax)
+st.pyplot(fig)
 
-# Forecast View
-st.header("🔮 10-Day Energy Usage Forecast")
-daily_usage['Day_Index'] = range(len(daily_usage))
-X = daily_usage[['Day_Index']]
-y = daily_usage['Usage_kWh']
+# Daily Usage Bar
+daily_usage = df.groupby('Date')['Usage_kWh'].sum()
+st.subheader("📅 Daily Energy Usage")
+fig, ax = plt.subplots()
+ax.bar(daily_usage.index.astype(str), daily_usage.values, color='skyblue')
+plt.xticks(rotation=45)
+st.pyplot(fig)
 
+# Cost by Appliance
+cost_by_appliance = df.groupby('Appliance')['Cost(INR)'].sum()
+st.subheader("💰 Cost by Appliance")
+fig, ax = plt.subplots()
+ax.bar(cost_by_appliance.index, cost_by_appliance.values, color='orange')
+st.pyplot(fig)
+
+# Smart Tip Generator
+tips = {
+    "Air Conditioner": "Set to 25°C & use sleep mode.",
+    "Lights": "Use LED & motion sensors.",
+    "Geyser": "Limit usage to 10 minutes.",
+    "Fridge": "Avoid frequent door opening.",
+    "Washing Machine": "Use eco mode & full loads."
+}
+top_appliance = appliance_usage.idxmax()
+tip = tips.get(top_appliance, "Consider unplugging unused appliances.")
+st.subheader("💡 Smart Energy Tip")
+st.markdown(f"**Top Appliance:** {top_appliance}")
+st.info(f"💡 Tip: {tip}")
+
+# Forecasting with Linear Regression
+st.subheader("🔮 Energy Forecast (Next 10 Days)")
+daily_df = df.groupby('Date')['Usage_kWh'].sum().reset_index()
+daily_df['Day_Index'] = np.arange(len(daily_df))
+X = daily_df[['Day_Index']]
+y = daily_df['Usage_kWh']
 model = LinearRegression()
 model.fit(X, y)
 
-future_index = pd.DataFrame({'Day_Index': range(len(daily_usage), len(daily_usage) + 10)})
+# Predict next 10 days
+future_index = np.arange(len(daily_df), len(daily_df)+10).reshape(-1, 1)
 future_usage = model.predict(future_index)
+future_dates = pd.date_range(start=daily_df['Date'].max() + pd.Timedelta(days=1), periods=10)
 
-future_dates = pd.date_range(start=pd.to_datetime(daily_usage['Date'].max()) + timedelta(days=1), periods=10)
-forecast_df = pd.DataFrame({"Date": future_dates, "Predicted_Usage_kWh": future_usage.round(2)})
+# Plot forecast
+fig, ax = plt.subplots()
+ax.plot(daily_df['Date'], daily_df['Usage_kWh'], label='Actual', marker='o')
+ax.plot(future_dates, future_usage, label='Predicted', linestyle='--', marker='x', color='red')
+ax.set_title("Energy Usage Forecast")
+ax.set_xlabel("Date")
+ax.set_ylabel("Usage (kWh)")
+ax.legend()
+plt.xticks(rotation=45)
+st.pyplot(fig)
 
-combined = pd.concat([daily_usage[['Date', 'Usage_kWh']].rename(columns={'Usage_kWh': 'Predicted_Usage_kWh'}), forecast_df])
-st.plotly_chart(px.line(combined, x='Date', y='Predicted_Usage_kWh', title='Actual & Forecasted Energy Usage'))
+# Forecast Table
+forecast_df = pd.DataFrame({
+    "Date": future_dates,
+    "Predicted_Usage_kWh": np.round(future_usage, 2)
+})
 st.dataframe(forecast_df)
+
 
 
