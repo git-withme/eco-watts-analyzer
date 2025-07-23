@@ -1,63 +1,66 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-from datetime import timedelta
+import numpy as np
 
-st.set_page_config(page_title="EcoWatts – Smart Home Analyzer", layout="wide")
-st.title("\U0001F50C EcoWatts – Smart Home Energy Analyzer")
+st.title("⚡ EcoWatts – Smart Home Energy Dashboard")
 
-page = st.sidebar.selectbox("Select a Page", ["Dashboard", "Forecast", "About"])
+# Load dataset
+df = pd.read_csv("energy_usage_sample.csv")
+df.columns = df.columns.str.strip()  # Strip spaces in column names
 
-@st.cache_data
-def load_data(file):
-    df = pd.read_csv(file, parse_dates=['Timestamp'])
-    df['Date'] = df['Timestamp'].dt.date
-    return df
+# Convert 'Timestamp' to datetime
+df['Timestamp'] = pd.to_datetime(df['Timestamp'])
+df['Hour'] = df['Timestamp'].dt.hour
+df['Date'] = df['Timestamp'].dt.date
 
-uploaded_file = st.sidebar.file_uploader("Upload your energy usage CSV", type="csv")
+# --- 📊 HOURLY ENERGY USAGE ---
+st.subheader("📊 Hourly Energy Usage Pattern")
+hourly_usage = df.groupby('Hour')['Usage_kWh'].sum()
+fig1, ax1 = plt.subplots(figsize=(8, 4))
+ax1.plot(hourly_usage.index, hourly_usage.values, marker='o', color='green')
+ax1.set_title("Hourly Energy Usage")
+ax1.set_xlabel("Hour of Day")
+ax1.set_ylabel("Usage (kWh)")
+ax1.grid(True)
+st.pyplot(fig1)
 
-if uploaded_file:
-    df = load_data(uploaded_file)
+# --- 🔮 DAILY USAGE PREDICTION FOR NEXT 10 DAYS ---
+st.subheader("🔮 Next 10 Days Usage Prediction (Linear Regression)")
 
-    if page == "Dashboard":
-        st.header("\U0001F4CA Energy Usage Dashboard")
-        daily_usage = df.groupby('Date')['Usage_kWh'].sum().reset_index()
-        appliance_usage = df.groupby('Appliance')['Usage_kWh'].sum().reset_index()
+# Group by date
+daily_usage = df.groupby('Date')['Usage_kWh'].sum().reset_index()
+daily_usage['Day_Index'] = range(len(daily_usage))  # X-axis
 
-        st.subheader("Daily Energy Usage")
-        st.plotly_chart(px.line(daily_usage, x='Date', y='Usage_kWh', title='Daily Usage'))
+# Train simple linear regression model
+X = daily_usage[['Day_Index']]
+y = daily_usage['Usage_kWh']
+model = LinearRegression()
+model.fit(X, y)
 
-        st.subheader("Top Consuming Appliances")
-        st.plotly_chart(px.bar(appliance_usage, x='Appliance', y='Usage_kWh', title='Appliance Usage'))
+# Predict for next 10 days
+future_days = np.arange(len(daily_usage), len(daily_usage) + 10).reshape(-1, 1)
+predicted_usage = model.predict(future_days)
 
-    elif page == "Forecast":
-        st.header("\U0001F52E 10-Day Energy Usage Forecast")
-        daily_df = df.groupby('Date')['Usage_kWh'].sum().reset_index()
-        daily_df['Day_Index'] = range(len(daily_df))
+# Create forecast DataFrame
+future_dates = pd.date_range(start=daily_usage['Date'].iloc[-1] + pd.Timedelta(days=1), periods=10)
+forecast_df = pd.DataFrame({'Date': future_dates, 'Predicted_Usage_kWh': predicted_usage})
 
-        X = daily_df[['Day_Index']]
-        y = daily_df['Usage_kWh']
+# Plot prediction
+fig2, ax2 = plt.subplots(figsize=(8, 4))
+ax2.plot(daily_usage['Date'], daily_usage['Usage_kWh'], label='Actual', color='blue')
+ax2.plot(forecast_df['Date'], forecast_df['Predicted_Usage_kWh'], label='Forecast', color='red', linestyle='--')
+ax2.set_title("Daily Usage Forecast (Next 10 Days)")
+ax2.set_xlabel("Date")
+ax2.set_ylabel("Usage (kWh)")
+ax2.legend()
+ax2.grid(True)
+st.pyplot(fig2)
 
-        model = LinearRegression()
-        model.fit(X, y)
-
-        future_index = pd.DataFrame({'Day_Index': range(len(daily_df), len(daily_df) + 10)})
-        future_usage = model.predict(future_index)
-
-        future_dates = pd.date_range(start=pd.to_datetime(daily_df['Date'].max()) + timedelta(days=1), periods=10)
-        forecast_df = pd.DataFrame({"Date": future_dates, "Predicted_Usage_kWh": future_usage.round(2)})
-
-        combined = pd.concat([daily_df[['Date', 'Usage_kWh']].rename(columns={'Usage_kWh': 'Predicted_Usage_kWh'}), forecast_df])
-        st.plotly_chart(px.line(combined, x='Date', y='Predicted_Usage_kWh', title='Actual & Forecasted Energy Usage'))
-        st.dataframe(forecast_df)
-
-    elif page == "About":
-        st.header("About EcoWatts")
-        st.write("EcoWatts helps visualize energy usage and predict future consumption using linear regression.")
-        st.write("Developed with Streamlit and Plotly for easy visualization.")
-else:
-    st.warning("Please upload your energy usage CSV file to get started.")
+# Show forecast table
+st.write("📅 Forecast Table")
+st.dataframe(forecast_df)
 
 
 
