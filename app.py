@@ -1,66 +1,74 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
+st.set_page_config(page_title="EcoWatts – Energy Analyzer", layout="wide")
 st.title("⚡ EcoWatts – Smart Home Energy Dashboard")
 
-# Load dataset
+# Load and clean data
 df = pd.read_csv("energy_usage_sample.csv")
-df.columns = df.columns.str.strip()  # Strip spaces in column names
-
-# Convert 'Timestamp' to datetime
+df.columns = df.columns.str.strip()  # Clean column names
 df['Timestamp'] = pd.to_datetime(df['Timestamp'])
 df['Hour'] = df['Timestamp'].dt.hour
 df['Date'] = df['Timestamp'].dt.date
 
-# --- 📊 HOURLY ENERGY USAGE ---
-st.subheader("📊 Hourly Energy Usage Pattern")
-hourly_usage = df.groupby('Hour')['Usage_kWh'].sum()
-fig1, ax1 = plt.subplots(figsize=(8, 4))
-ax1.plot(hourly_usage.index, hourly_usage.values, marker='o', color='green')
-ax1.set_title("Hourly Energy Usage")
-ax1.set_xlabel("Hour of Day")
-ax1.set_ylabel("Usage (kWh)")
-ax1.grid(True)
-st.pyplot(fig1)
+# -----------------------------------------------
+# 📊 Hourly Usage Line Chart with Plotly
+# -----------------------------------------------
+st.subheader("📈 Hourly Energy Usage Pattern")
+hourly_usage = df.groupby('Hour')['Usage_kWh'].sum().reset_index()
 
-# --- 🔮 DAILY USAGE PREDICTION FOR NEXT 10 DAYS ---
-st.subheader("🔮 Next 10 Days Usage Prediction (Linear Regression)")
+fig_hourly = px.line(
+    hourly_usage, x='Hour', y='Usage_KWh',
+    markers=True, title="Hourly Energy Consumption",
+    labels={'Usage_KWh': 'Energy Used (kWh)', 'Hour': 'Hour of Day'}
+)
+fig_hourly.update_traces(line=dict(color='green'))
+st.plotly_chart(fig_hourly, use_container_width=True)
 
-# Group by date
-daily_usage = df.groupby('Date')['Usage_kWh'].sum().reset_index()
-daily_usage['Day_Index'] = range(len(daily_usage))  # X-axis
+# -----------------------------------------------
+# 🔮 Next 10 Days Prediction using Linear Regression
+# -----------------------------------------------
+st.subheader("🔮 Forecast: Next 10 Days Energy Usage")
 
-# Train simple linear regression model
+# Prepare daily usage
+daily_usage = df.groupby('Date')['Usage_KWh'].sum().reset_index()
+daily_usage['Day_Index'] = range(len(daily_usage))  # For regression
+
+# Linear Regression model
 X = daily_usage[['Day_Index']]
-y = daily_usage['Usage_kWh']
+y = daily_usage['Usage_KWh']
 model = LinearRegression()
 model.fit(X, y)
 
-# Predict for next 10 days
-future_days = np.arange(len(daily_usage), len(daily_usage) + 10).reshape(-1, 1)
-predicted_usage = model.predict(future_days)
-
-# Create forecast DataFrame
+# Predict next 10 days
+future_indices = np.arange(len(daily_usage), len(daily_usage) + 10).reshape(-1, 1)
+predicted_usage = model.predict(future_indices)
 future_dates = pd.date_range(start=daily_usage['Date'].iloc[-1] + pd.Timedelta(days=1), periods=10)
-forecast_df = pd.DataFrame({'Date': future_dates, 'Predicted_Usage_kWh': predicted_usage})
 
-# Plot prediction
-fig2, ax2 = plt.subplots(figsize=(8, 4))
-ax2.plot(daily_usage['Date'], daily_usage['Usage_kWh'], label='Actual', color='blue')
-ax2.plot(forecast_df['Date'], forecast_df['Predicted_Usage_kWh'], label='Forecast', color='red', linestyle='--')
-ax2.set_title("Daily Usage Forecast (Next 10 Days)")
-ax2.set_xlabel("Date")
-ax2.set_ylabel("Usage (kWh)")
-ax2.legend()
-ax2.grid(True)
-st.pyplot(fig2)
+forecast_df = pd.DataFrame({
+    'Date': future_dates,
+    'Predicted_Usage_KWh': predicted_usage
+})
 
-# Show forecast table
-st.write("📅 Forecast Table")
+# Combine actual and forecast for plot
+combined = pd.concat([
+    daily_usage[['Date', 'Usage_KWh']].rename(columns={'Usage_KWh': 'kWh'}),
+    forecast_df.rename(columns={'Predicted_Usage_KWh': 'kWh'})
+])
+combined['Type'] = ['Actual'] * len(daily_usage) + ['Forecast'] * 10
+
+# Plot
+fig_forecast = px.line(
+    combined, x='Date', y='kWh', color='Type',
+    title="Energy Usage Forecast (Next 10 Days)",
+    labels={'kWh': 'Energy Used (kWh)'}
+)
+fig_forecast.update_traces(mode='lines+markers')
+st.plotly_chart(fig_forecast, use_container_width=True)
+
+# Show Forecast Table
+st.write("📋 Forecast Table")
 st.dataframe(forecast_df)
-
-
-
