@@ -24,16 +24,16 @@ filtered_df = df[df['Appliance'] == appliance]
 
 # Basic visualization
 st.subheader("Energy Usage")
-st.line_chart(filtered_df.set_index('Date')['Usage'])
+st.line_chart(filtered_df.set_index('Date')[' Usage'])
 
 # Simple stats
 st.subheader("Statistics")
 col1, col2 = st.columns(2)
 with col1:
-    st.metric("Total Usage", f"{filtered_df['Usage'].sum()} kWh")
-    st.metric("Average Daily", f"{filtered_df['Usage'].mean():.1f} kWh")
+    st.metric("Total Usage", f"{filtered_df[' Usage'].sum()} kWh")
+    st.metric("Average Daily", f"{filtered_df[' Usage'].mean():.1f} kWh")
 with col2:
-    st.metric("Max Daily", f"{filtered_df['Usage'].max()} kWh")
+    st.metric("Max Daily", f"{filtered_df[' sage'].max()} kWh")
     st.metric("Days Recorded", len(filtered_df))
 
 # Simple forecast
