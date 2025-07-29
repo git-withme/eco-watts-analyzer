@@ -8,15 +8,7 @@ from datetime import datetime, timedelta
 st.title("EcoWatt - Simple Energy Analyzer")
 st.sidebar.header("Settings")
 
-# Sample data in case user doesn't upload
-sample_data = {
-    "Date": [f"2023-01-{i}" for i in range(1, 31)],
-    "Appliance": ["Fridge"]*10 + ["AC"]*10 + ["Lights"]*10,
-    "Usage": [5, 5, 6, 5, 4, 6, 5, 7, 6, 5] + 
-             [15, 17, 16, 18, 19, 17, 16, 20, 18, 19] + 
-             [3, 4, 3, 2, 3, 4, 5, 3, 4, 3]
-}
-df = pd.DataFrame(sample_data)
+df = pd.read_csv("energy_usage_sample.csv")
 
 # Allow file upload
 uploaded_file = st.sidebar.file_uploader("Upload your energy data (CSV)")
